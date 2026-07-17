@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ipon Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.3/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="book">
+  <div class="cover">
+    <p class="eyebrow">Sagot sa Alkansya</p>
+    <h1>Ipon Challenge</h1>
+    <div class="account-bar">
+      <span>Logged in as <strong><%= username %></strong></span>
+      <form method="POST" action="/logout"><button type="submit">Log out</button></form>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-mode="week52">52-Week</div>
+    <div class="tab" data-mode="env100">100-Envelope</div>
+    <div class="tab" data-mode="custom">Custom</div>
+  </div>
+
+  <div class="ledger-head">
+    <div class="balance-row">
+      <div>
+        <p class="balance-label">Saved so far</p>
+        <div class="balance-amt" id="savedAmt">₱0</div>
+      </div>
+      <div class="goal-col">
+        <p class="balance-label">Goal</p>
+        <div class="balance-amt" id="goalAmt" style="font-size:20px;color:#8a806a;">₱0</div>
+      </div>
+    </div>
+    <div class="track"><div class="track-fill" id="trackFill"></div></div>
+    <div class="track-meta">
+      <span id="entriesDone">0 of 0 entries</span>
+      <span id="pctDone">0%</span>
+    </div>
+  </div>
+
+  <p class="panel-note" id="panelNote"></p>
+
+  <div class="custom-form" id="customForm" style="display:none;">
+    <div>
+      <label>Goal (₱)</label>
+      <input type="number" id="customGoal" placeholder="10000" min="1">
+    </div>
+    <div>
+      <label>Split into</label>
+      <input type="number" id="customCount" placeholder="30" min="1">
+    </div>
+    <button id="customBuild">Build plan</button>
+  </div>
+
+  <div class="push-row">
+    <button class="push-btn" id="pushBtn"></button>
+    <span class="push-status" id="pushStatus"></span>
+  </div>
+
+  <div class="done-banner" id="doneBanner">Tapos na! Goal reached — panalo! 🎉</div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="chart-wrap">
+    <h3>Savings over time</h3>
+    <canvas id="progressChart" height="140"></canvas>
+  </div>
+
+  <div class="footer-row">
+    <span class="hint" id="footerHint"></span>
+    <button class="reset-btn" id="resetBtn">Reset this challenge</button>
+  </div>
+</div>
+
+<script>
+  window.__CHALLENGES__ = <%- JSON.stringify(challenges) %>;
+  window.__VAPID_PUBLIC_KEY__ = <%- JSON.stringify(vapidPublicKey) %>;
+  window.__HAS_PUSH_SUBSCRIPTION__ = <%- JSON.stringify(hasPushSubscription) %>;
+</script>
+<script src="/js/app.js"></script>
+</body>
+</html>

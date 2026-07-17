@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in — Ipon Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="auth-card">
+    <div class="cover">
+      <p class="eyebrow">Sagot sa Alkansya</p>
+      <h1>Ipon Challenge</h1>
+    </div>
+    <div class="auth-body">
+      <% if (error) { %>
+        <div class="auth-error"><%= error %></div>
+      <% } %>
+      <form method="POST" action="/login">
+        <label>Username</label>
+        <input type="text" name="username" required autofocus>
+        <label>Password</label>
+        <input type="password" name="password" required>
+        <button type="submit">Log in</button>
+      </form>
+      <p class="auth-switch">No account yet? <a href="/register">Register</a></p>
+    </div>
+  </div>
+</body>
+</html>
